@@ -27,9 +27,17 @@
         Tu navegador no soporta el elemento de audio.
     </audio>
     
+    <!-- Botón para reproducir música -->
+    <button id="play-button">Reproducir Música</button>
+    
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('play-button').addEventListener('click', function() {
             var audio = document.getElementById('background-audio');
             audio.volume = 0.5; // Ajusta el volumen (0.0 a 1.0)
-
-            function playAudio() {
+            audio.play().catch(function(error) {
+                console.log('Error al intentar reproducir el audio:', error);
+            });
+        });
+    </script>
+</body>
+</html>
