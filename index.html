@@ -22,8 +22,8 @@
     <h1>Bienvenido a mi página</h1>
     
     <!-- Contenedor para audio -->
-    <audio id="background-audio" preload="auto" controls>
-        <source src="https://www.dropbox.com/scl/fi/j5teprcdk9r4tecwqa86t/Undertale-OST-Uwa-So-Temperate-Extended-2-1.mp3?rlkey=ljb31128mz0sa9i1eigkd5l1t&st=iyxqmhau" type="audio/mpeg">
+    <audio id="background-audio" preload="auto">
+        <source src="https://www.dropbox.com/scl/fi/j5teprcdk9r4tecwqa86t/Undertale-OST-Uwa-So-Temperate-Extended-2-1.mp3?rlkey=ljb31128mz0sa9i1eigkd5l1t&st=sf881g5y" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
     
@@ -31,12 +31,5 @@
         document.addEventListener('DOMContentLoaded', function () {
             var audio = document.getElementById('background-audio');
             audio.volume = 0.5; // Ajusta el volumen (0.0 a 1.0)
-            
-            // Intenta reproducir el audio automáticamente
-            audio.play().catch(function(error) {
-                console.log('Error al intentar reproducir el audio:', error);
-            });
-        });
-    </script>
-</body>
-</html>
+
+            function playAudio() {
