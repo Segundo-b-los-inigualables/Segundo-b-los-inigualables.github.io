@@ -13,6 +13,9 @@
             margin: 0;
             padding: 0;
         }
+        audio {
+            display: none; /* Oculta el reproductor de audio */
+        }
     </style>
 </head>
 <body>
@@ -20,7 +23,7 @@
     
     <!-- Contenedor para audio -->
     <audio id="background-audio" preload="auto" controls>
-        <source src="https://www.dropbox.com/scl/fi/j5teprcdk9r4tecwqa86t/Undertale-OST-Uwa-So-Temperate-Extended-2-1.mp3?rlkey=ljb31128mz0sa9i1eigkd5l1t&st=iyxqmhau" type="audio/mpeg">
+        <source src="https://www.dropbox.com/scl/fi/j5teprcdk9r4tecwqa86t/Undertale-OST-Uwa-So-Temperate-Extended-2-1.mp3?rlkey=ljb31128mz0sa9i1eigkd5l1t&st=sf881g5y" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
     
@@ -29,23 +32,4 @@
             var audio = document.getElementById('background-audio');
             audio.volume = 0.5; // Ajusta el volumen (0.0 a 1.0)
             
-            function playAudio() {
-                audio.play().catch(function(error) {
-                    console.log('Error al intentar reproducir el audio:', error);
-                });
-            }
-            
-            // Intentar reproducir el audio en diferentes eventos
-            window.addEventListener('click', playAudio);
-            window.addEventListener('keypress', playAudio);
-            window.addEventListener('touchstart', playAudio);
-            
-            // También intentar reproducir el audio al hacer clic en un botón
-            var button = document.createElement('button');
-            button.textContent = 'Reproducir Música';
-            button.addEventListener('click', playAudio);
-            document.body.appendChild(button);
-        });
-    </script>
-</body>
-</html>
+            // Intenta reproducir el audio automáticam
