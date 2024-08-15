@@ -19,8 +19,8 @@
     <h1>Bienvenido a mi página</h1>
     
     <!-- Contenedor para audio -->
-    <audio id="background-audio" preload="auto">
-        <source src="https://www.dropbox.com/s/j5teprcdk9r4tecwqa86t/Undertale-OST-Uwa-So-Temperate-Extended-2-1.mp3?raw=1" type="audio/mpeg">
+    <audio id="background-audio" preload="auto" controls>
+        <source src="https://www.dropbox.com/scl/fi/j5teprcdk9r4tecwqa86t/Undertale-OST-Uwa-So-Temperate-Extended-2-1.mp3?rlkey=ljb31128mz0sa9i1eigkd5l1t&st=iyxqmhau" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
     
@@ -29,17 +29,13 @@
             var audio = document.getElementById('background-audio');
             audio.volume = 0.5; // Ajusta el volumen (0.0 a 1.0)
             
-            // Intentar reproducir el audio
             function playAudio() {
-                audio.play().then(() => {
-                    console.log('Audio reproducido correctamente.');
-                }).catch((error) => {
+                audio.play().catch(function(error) {
                     console.log('Error al intentar reproducir el audio:', error);
                 });
             }
             
             // Intentar reproducir el audio en diferentes eventos
-            // Esto puede ayudar a sortear algunas restricciones de navegador
             window.addEventListener('click', playAudio);
             window.addEventListener('keypress', playAudio);
             window.addEventListener('touchstart', playAudio);
