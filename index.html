@@ -3,216 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Web</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #50b3a2;
-            color: #fff;
-            padding: 20px 0;
-        }
-        header h1 {
-            margin: 0;
-            text-align: center;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #333;
-        }
-        nav a {
-            color: #fff;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
-        }
-        nav a:hover {
-            background-color: #ddd;
-            color: #333;
-        }
-        .container {
-            padding: 20px;
-        }
-        .main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .main h2 {
-            margin-top: 0;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-    </style>
+    <title>Mi Tienda</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Bienvenido a Mi Página Web</h1>
-    </header>
-    <nav>
-        <a href="#">Inicio</a>
-        <a href="#">Sobre Nosotros</a>
-        <a href="#">Servicios</a>
-        <a href="#">Contacto</a>
-    </nav>
-    <div class="container">
-        <div class="main">
-            <h2>Introducción</h2>
-            <p>Esta es una página de ejemplo para mostrar un diseño básico con HTML y CSS. Puedes personalizar este diseño para adaptarlo a tus necesidades específicas.</p>
-            <p>Incluye una navegación sencilla, un encabezado, una sección principal y un pie de página.</p>
+        <h1>Mi Tienda</h1>
+        <div id="cart">
+            <h2>Carrito</h2>
+            <ul id="cart-items"></ul>
+            <p>Total: <span id="cart-total">0</span> €</p>
         </div>
-    </div>
-    <footer>
-        <p>&copy; 2024 Mi Página Web</p>
-    </footer>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego del Gusano</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        #game {
-            border: 2px solid #333;
-            background-color: #fff;
-            position: relative;
-        }
-        .snake {
-            background-color: #50b3a2;
-            position: absolute;
-        }
-        .food {
-            background-color: #e74c3c;
-            position: absolute;
-        }
-    </style>
-</head>
-<body>
-    <canvas id="game" width="400" height="400"></canvas>
-
-    <script>
-        const canvas = document.getElementById("game");
-        const ctx = canvas.getContext("2d");
-        const grid = 20;
-        let count = 0;
-
-        let snake = {
-            x: grid * 5,
-            y: grid * 5,
-            dx: grid,
-            dy: 0,
-            cells: [],
-            maxCells: 4
-        };
-
-        let food = {
-            x: grid * 10,
-            y: grid * 10
-        };
-
-        function getRandomInt(min, max) {
-            return Math.floor(Math.random() * (max - min)) + min;
-        }
-
-        function loop() {
-            requestAnimationFrame(loop);
-
-            if (++count < 4) {
-                return;
-            }
-
-            count = 0;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            snake.x += snake.dx;
-            snake.y += snake.dy;
-
-            if (snake.x < 0) {
-                snake.x = canvas.width - grid;
-            } else if (snake.x >= canvas.width) {
-                snake.x = 0;
-            }
-
-            if (snake.y < 0) {
-                snake.y = canvas.height - grid;
-            } else if (snake.y >= canvas.height) {
-                snake.y = 0;
-            }
-
-            snake.cells.unshift({ x: snake.x, y: snake.y });
-
-            if (snake.cells.length > snake.maxCells) {
-                snake.cells.pop();
-            }
-
-            ctx.fillStyle = "red";
-            ctx.fillRect(food.x, food.y, grid - 1, grid - 1);
-
-            ctx.fillStyle = "#50b3a2";
-            snake.cells.forEach(function (cell, index) {
-                ctx.fillRect(cell.x, cell.y, grid - 1, grid - 1);
-
-                if (cell.x === food.x && cell.y === food.y) {
-                    snake.maxCells++;
-                    food.x = getRandomInt(0, 20) * grid;
-                    food.y = getRandomInt(0, 20) * grid;
-                }
-
-                for (let i = index + 1; i < snake.cells.length; i++) {
-                    if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
-                        snake.x = grid * 5;
-                        snake.y = grid * 5;
-                        snake.cells = [];
-                        snake.maxCells = 4;
-                        snake.dx = grid;
-                        snake.dy = 0;
-                        food.x = getRandomInt(0, 20) * grid;
-                        food.y = getRandomInt(0, 20) * grid;
-                    }
-                }
-            });
-        }
-
-        document.addEventListener("keydown", function (e) {
-            if (e.which === 37 && snake.dx === 0) {
-                snake.dx = -grid;
-                snake.dy = 0;
-            } else if (e.which === 38 && snake.dy === 0) {
-                snake.dy = -grid;
-                snake.dx = 0;
-            } else if (e.which === 39 && snake.dx === 0) {
-                snake.dx = grid;
-                snake.dy = 0;
-            } else if (e.which === 40 && snake.dy === 0) {
-                snake.dy = grid;
-                snake.dx = 0;
-            }
-        });
-
-        requestAnimationFrame(loop);
-    </script>
+    </header>
+    <main>
+        <section class="product">
+            <h2>Producto 1</h2>
+            <p>Descripción del producto 1.</p>
+            <p>Precio: 10 €</p>
+            <button onclick="addToCart('Producto 1', 10)">Agregar al carrito</button>
+        </section>
+        <section class="product">
+            <h2>Producto 2</h2>
+            <p>Descripción del producto 2.</p>
+            <p>Precio: 20 €</p>
+            <button onclick="addToCart('Producto 2', 20)">Agregar al carrito</button>
+        </section>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
